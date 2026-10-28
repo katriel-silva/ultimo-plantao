@@ -53,7 +53,7 @@ const corredorPrincipal = {
     andar: "Térreo",
     camera: 8, 
     luzAcesa: true,
-    saidas: ["Sala de Comando", "Sala de Espera, Sala de Laudos", "Sala de Tomografia", "Sala de Raio-X", "Recepção", "Escada do Porão"],
+    saidas: ["Sala de Comando", "Sala de Espera", "Sala de Laudos", "Sala de Tomografia", "Sala de Raio-X", "Recepção", "Escada do Porão"],
 };
 
 const escadaDoPorao = {
@@ -69,7 +69,7 @@ const arquivoMorto = {
     andar: "Porão",
     camera: 7,
     luzAcesa: false,
-    saidas: ["Escada do Porão, Sala do Gerador, Câmara Escura"],
+    saidas: ["Escada do Porão", "Sala do Gerador", "Câmara Escura"],
 };
 
 const salaDoGerador = {
@@ -77,7 +77,7 @@ const salaDoGerador = {
     andar: "Porão",
     camera: 9,
     luzAcesa: true,
-    saidas: ["Arquivo Morto, Câmara Escura"],
+    saidas: ["Arquivo Morto", "Câmara Escura"],
 };
 
 const camaraEscura = {
@@ -85,7 +85,7 @@ const camaraEscura = {
     andar: "Porão",
     camera: 10,
     luzAcesa: false,
-    saidas: ["Arquivo Morto"],
+    saidas: ["Arquivo Morto", ],
 };
 
 //para acessar os valores do objeto, usamos o operador ponto (.) (ex: salaComando.nome)
@@ -168,6 +168,9 @@ console.log(`-----------------------------`);
 //--------------------------------------------------------------------------------------------
 
 
+// Alterando o valor da propriedade luzAcesa para false, desse jeito finciona pq a propriedade luzAcesa é do tipo booleano, então podemos alterar o valor dela para true ou false.
 salaComando.luzAcesa = false;
 console.log(`nome da sala: ${salaComando.nome}`);
 console.log(`Luz acesa? ${salaComando.luzAcesa}`);
+
+console.log(arquivoMorto.saidas.length);
