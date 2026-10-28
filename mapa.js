@@ -9,33 +9,33 @@ const recepcao = {
 };
 
 const salaDeEspera = {
-    nome: "Sala de Espera",          //nome da sala
-    andar: "Térreo",                 //andar da sala
-    camera: 2,                       //câmera de segurança da sala (null = não tem câmera)
-    luzAcesa: true,                  // boolean: só pode ser true ou false
-    saidas: ["Corredor principal"],  // array: uma LISTA de valores
+    nome: "Sala de Espera",          
+    andar: "Térreo",                 
+    camera: 2,                       
+    luzAcesa: true,                  
+    saidas: ["Corredor principal"],  
 };
 
 const salaDeRaiox = {
-    nome: "Sala de Raio-X",          //nome da sala
-    andar: "Térreo",                 //andar da sala
-    camera: 3,                       //câmera de segurança da sala (null = não tem câmera)
-    luzAcesa: true,                  // boolean: só pode ser true ou false
-    saidas: ["Corredor principal"],  // array: uma LISTA de valores
+    nome: "Sala de Raio-X",          
+    andar: "Térreo",                 
+    camera: 5,                       
+    luzAcesa: true,                  
+    saidas: ["Corredor principal"],  
 };
 
 const salaComando = {
-    nome: "Sala de Comando",        //nome da sala
-    andar: "Térreo",                //andar da sala
-    camera: null,                   //câmera de segurança da sala (null = não tem câmera)
-    luzAcesa: true,                 // boolean: só pode ser true ou false
-    saidas: ["Corredor principal"], // array: uma LISTA de valores
+    nome: "Sala de Comando",        
+    andar: "Térreo",                
+    camera: null,                   
+    luzAcesa: true,                 
+    saidas: ["Corredor principal"], 
 };
 
 const salaDeLaudos = {
     nome: "Sala de Laudos",
     andar: "Térreo",
-    camera: 4,
+    camera: 3,
     luzAcesa: true,
     saidas: ["Corredor principal"],
 };
@@ -43,7 +43,7 @@ const salaDeLaudos = {
 const salaDeTomografia = {
     nome: "Sala de Tomografia",
     andar: "Térreo",
-    camera: 5,
+    camera: 4,
     luzAcesa: true,
     saidas: ["Corredor principal"],
 };
@@ -53,7 +53,7 @@ const corredorPrincipal = {
     andar: "Térreo",
     camera: 8, 
     luzAcesa: true,
-    saidas: ["Sala de Comando", "Sala de Espera"],
+    saidas: ["Sala de Comando", "Sala de Espera, Sala de Laudos", "Sala de Tomografia", "Sala de Raio-X", "Recepção", "Escada do Porão"],
 };
 
 const escadaDoPorao = {
@@ -61,7 +61,7 @@ const escadaDoPorao = {
     andar: "Térreo",
     camera: 6,
     luzAcesa: false,
-    saidas: ["Porão"],
+    saidas: ["Corredor principal", "Arquivo Morto"],
 };
 
 const arquivoMorto = {
@@ -69,7 +69,7 @@ const arquivoMorto = {
     andar: "Porão",
     camera: 7,
     luzAcesa: false,
-    saidas: ["Escada do Porão"],
+    saidas: ["Escada do Porão, Sala do Gerador, Câmara Escura"],
 };
 
 const salaDoGerador = {
@@ -77,7 +77,7 @@ const salaDoGerador = {
     andar: "Porão",
     camera: 9,
     luzAcesa: true,
-    saidas: ["Arquivo Morto"],
+    saidas: ["Arquivo Morto, Câmara Escura"],
 };
 
 const camaraEscura = {
@@ -89,6 +89,27 @@ const camaraEscura = {
 };
 
 //para acessar os valores do objeto, usamos o operador ponto (.) (ex: salaComando.nome)
+console.log(`nome da sala: ${recepcao.nome}`);
+console.log(`Luz acesa? ${recepcao.luzAcesa}`);
+console.log(`Saídas: ${recepcao.saidas}`);
+console.log(`Câmera de segurança: ${recepcao.camera}`);
+console.log(`Andar: ${recepcao.andar}`);
+console.log(`-----------------------------`);
+//--------------------------------------------------------------------------------------------
+console.log(`nome da sala: ${salaDeEspera.nome}`);
+console.log(`Luz acesa? ${salaDeEspera.luzAcesa}`);
+console.log(`Saídas: ${salaDeEspera.saidas}`);
+console.log(`Câmera de segurança: ${salaDeEspera.camera}`);
+console.log(`Andar: ${salaDeEspera.andar}`);
+console.log(`-----------------------------`);
+//--------------------------------------------------------------------------------------------
+console.log(`nome da sala: ${salaDeRaiox.nome}`);
+console.log(`Luz acesa? ${salaDeRaiox.luzAcesa}`);
+console.log(`Saídas: ${salaDeRaiox.saidas}`);
+console.log(`Câmera de segurança: ${salaDeRaiox.camera}`);
+console.log(`Andar: ${salaDeRaiox.andar}`);
+console.log(`-----------------------------`);
+//--------------------------------------------------------------------------------------------
 console.log(`nome da sala: ${salaComando.nome}`);
 console.log(`Luz acesa? ${salaComando.luzAcesa}`);
 console.log(`Saídas: ${salaComando.saidas}`);
@@ -145,3 +166,8 @@ console.log(`Câmera de segurança: ${camaraEscura.camera}`);
 console.log(`Andar: ${camaraEscura.andar}`);
 console.log(`-----------------------------`);
 //--------------------------------------------------------------------------------------------
+
+
+salaComando.luzAcesa = false;
+console.log(`nome da sala: ${salaComando.nome}`);
+console.log(`Luz acesa? ${salaComando.luzAcesa}`);
