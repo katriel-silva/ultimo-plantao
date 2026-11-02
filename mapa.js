@@ -98,32 +98,68 @@ function mostrarSala(sala){
     console.log(`-----------------------------`);
 };
 
-mostrarSala(salaComando);
-mostrarSala(arquivoMorto);
-mostrarSala(salaDeLaudos);
-mostrarSala(salaDeTomografia);
-
 //funções para acender e apagar a luz de uma sala
 function apagarLuz(sala){
     sala.luzAcesa = false;
-    console.log(`Luz da sala ${sala.nome} apagada!`);
+    console.log(`Luz da ${sala.nome} apagada!`);
 }
-
-apagarLuz(salaComando);
-
+//função para acender a luz de uma sala
 function acenderLuz(sala){
     sala.luzAcesa = true;
-    console.log(`Luz da sala ${sala.nome} acesa!`);
+    console.log(`Luz da ${sala.nome} acesa!`);
 }
 
+//array com todas as salas da clínica
+const salas = [recepcao, salaDeEspera, salaDeRaiox, salaComando, arquivoMorto, salaDeLaudos, salaDeTomografia, corredorPrincipal, escadaDoPorao, salaDoGerador, camaraEscura];
+
+//função que busca uma sala pelo nome
+function buscarSala(nome){
+    for (const sala of salas){
+        if (sala.nome === nome){
+            return sala;
+        }
+    }
+    console.log(`Sala ${nome} não encontrada.`);
+    return null;
+};
+
+//função que mostra todas as salas da clínica
+function mostrarTodasAsSalas(){
+    for (const sala of salas){
+        mostrarSala(sala);
+    }
+}
+
+//função que conta quantas luzes estão acesas na clínica (usado let em vez de const, pois o valor da variável contador vai mudar)
+function contarLuzesAcesas(){
+    let contador = 0;
+    for (const sala of salas){
+        if (sala.luzAcesa){
+            contador++;
+        }
+    }
+    console.log(`Número de luzes acesas: ${contador}`);
+};
+
+function ondeVeladaPodeIr(sala){
+    //ela so pode ir nas salas que estão com as luzes apagadas.
+    //criar um array vazio para guardar as salas disponíveis
+    const salasDisponiveis = [];
+    for (const s of salas){
+        //verificar se a luz da sala está apagada
+        if (!s.luzAcesa){
+            salasDisponiveis.push(s);
+        }
+    }
+    return salasDisponiveis;
+};
+
+const destino = buscarSala("Sala de Laudos");
+mostrarSala(destino);
+
+//apagar a luz da sala de comando e mostrar as informações dela
+apagarLuz(salaComando);
+mostrarSala(salaComando);
+//acender a luz da sala de comando e mostrar as informações dela
 acenderLuz(salaComando);
-
-
-/*desse jeito funciona pq nao estou alterando o objeto, apenas mudando o valor de uma propriedade dele
-salaComando.luzAcesa = false;
-console.log(`nome da sala: ${salaComando.nome}`);
-console.log(`Luz acesa? ${salaComando.luzAcesa}`);
-
-console.log(arquivoMorto.saidas.length);*/
-
-
+mostrarSala(salaComando);
