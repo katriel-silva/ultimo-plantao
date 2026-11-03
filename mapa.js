@@ -88,6 +88,9 @@ const camaraEscura = {
     saidas: ["Arquivo Morto", "Sala do Gerador"],
 };
 
+//array com todas as salas da clínica
+const salas = [recepcao, salaDeEspera, salaDeRaiox, salaComando, arquivoMorto, salaDeLaudos, salaDeTomografia, corredorPrincipal, escadaDoPorao, salaDoGerador, camaraEscura];
+    
 //função que mostra as informações de uma sala
 function mostrarSala(sala){
     console.log(`Nome da sala: ${sala.nome}`);
@@ -108,9 +111,6 @@ function acenderLuz(sala){
     sala.luzAcesa = true;
     console.log(`Luz da ${sala.nome} acesa!`);
 }
-
-//array com todas as salas da clínica
-const salas = [recepcao, salaDeEspera, salaDeRaiox, salaComando, arquivoMorto, salaDeLaudos, salaDeTomografia, corredorPrincipal, escadaDoPorao, salaDoGerador, camaraEscura];
 
 //função que busca uma sala pelo nome
 function buscarSala(nome){
@@ -138,21 +138,26 @@ function contarLuzesAcesas(){
             contador++;
         }
     }
-    console.log(`Número de luzes acesas: ${contador}`);
+    return contador;
 };
 
-function ondeVeladaPodeIr(sala){
-    //ela so pode ir nas salas que estão com as luzes apagadas.
-    //criar um array vazio para guardar as salas disponíveis
-    const salasDisponiveis = [];
-    for (const s of salas){
-        //verificar se a luz da sala está apagada
-        if (!s.luzAcesa){
-            salasDisponiveis.push(s);
-        }
+    console.log(`Luzes acesas: ${contarLuzesAcesas()} de ${salas.length}`);
+
+// Onde a Velada pode ir a partir da sala em que ela está?
+// Regra: ela só anda para salas VIZINHAS que estão com a luz apagada.
+function ondeVeladaPodeIr(salaAtual) {
+  const destinos = [];                          // lista vazia pra guardar os destinos
+  for (const nomeSaida of salaAtual.saidas) {   // percorre só as saídas DESTA sala
+    const vizinha = buscarSala(nomeSaida);      // transforma o nome na ficha da sala
+    if (!vizinha.luzAcesa) {                    // se a luz da vizinha NÃO está acesa...
+      destinos.push(vizinha);                   // ...ela pode ir pra lá
+    }else{
+        // se a luz da vizinha está acesa, não pode ir pra lá
+        destinos.push(`A Velada não pode ir para ${vizinha.nome} pois a luz está acesa!`);
     }
-    return salasDisponiveis;
-};
+  }
+  return destinos;
+}
 
 const destino = buscarSala("Sala de Laudos");
 mostrarSala(destino);
