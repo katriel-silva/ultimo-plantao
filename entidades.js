@@ -1,11 +1,11 @@
 //entidades.js - as assombrações do jogo 
 //esse arquivo usa o mapa.js.
-import {buscarSala} from "mapa.js";
+import {buscarSala} from "./mapa.js";
 
 //ficha da Velada
 export const velada = {
     nome: "A Velada",                   //nome da assombração
-    salaAtual: buscarSala("Câmara escura"), //onde ela está agora
+    salaAtual: buscarSala("Câmara Escura"),  //onde ela está agora
 
 };
 
