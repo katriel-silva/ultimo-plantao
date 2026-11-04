@@ -9,27 +9,27 @@ const recepcao = {
 };
 
 const salaDeEspera = {
-    nome: "Sala de Espera",          
-    andar: "Térreo",                 
-    camera: 2,                       
-    luzAcesa: true,                  
-    saidas: ["Corredor principal"],  
+    nome: "Sala de Espera",
+    andar: "Térreo",
+    camera: 2,
+    luzAcesa: true,
+    saidas: ["Corredor principal"],
 };
 
 const salaDeRaiox = {
-    nome: "Sala de Raio-X",          
-    andar: "Térreo",                 
-    camera: 5,                       
-    luzAcesa: true,                  
-    saidas: ["Corredor principal"],  
+    nome: "Sala de Raio-X",
+    andar: "Térreo",
+    camera: 5,
+    luzAcesa: true,
+    saidas: ["Corredor principal"],
 };
 
 const salaComando = {
-    nome: "Sala de Comando",        
-    andar: "Térreo",                
-    camera: null,                   
-    luzAcesa: true,                 
-    saidas: ["Corredor principal"], 
+    nome: "Sala de Comando",
+    andar: "Térreo",
+    camera: null,
+    luzAcesa: true,
+    saidas: ["Corredor principal"],
 };
 
 const salaDeLaudos = {
@@ -51,7 +51,7 @@ const salaDeTomografia = {
 const corredorPrincipal = {
     nome: "Corredor principal",
     andar: "Térreo",
-    camera: 8, 
+    camera: 8,
     luzAcesa: true,
     saidas: ["Sala de Comando", "Sala de Espera", "Sala de Laudos", "Sala de Tomografia", "Sala de Raio-X", "Recepção", "Escada do Porão"],
 };
@@ -90,73 +90,70 @@ const camaraEscura = {
 
 //array com todas as salas da clínica
 const salas = [recepcao, salaDeEspera, salaDeRaiox, salaComando, arquivoMorto, salaDeLaudos, salaDeTomografia, corredorPrincipal, escadaDoPorao, salaDoGerador, camaraEscura];
-    
+
 //função que mostra as informações de uma sala
-function mostrarSala(sala){
+function mostrarSala(sala) {
     console.log(`Nome da sala: ${sala.nome}`);
     console.log(`Luz acesa?: ${sala.luzAcesa}`);
     console.log(`Saídas: ${sala.saidas}`);
     console.log(`Câmera de segurança: ${sala.camera}`);
     console.log(`Andar: ${sala.andar}`);
     console.log(`-----------------------------`);
-};
+}
 
 //funções para acender e apagar a luz de uma sala
-function apagarLuz(sala){
+function apagarLuz(sala) {
     sala.luzAcesa = false;
     console.log(`Luz da ${sala.nome} apagada!`);
 }
 //função para acender a luz de uma sala
-function acenderLuz(sala){
+function acenderLuz(sala) {
     sala.luzAcesa = true;
     console.log(`Luz da ${sala.nome} acesa!`);
 }
 
 //função que busca uma sala pelo nome
-function buscarSala(nome){
-    for (const sala of salas){
-        if (sala.nome === nome){
+function buscarSala(nome) {
+    for (const sala of salas) {
+        if (sala.nome === nome) {
             return sala;
         }
     }
     console.log(`Sala ${nome} não encontrada.`);
     return null;
-};
+}
 
 //função que mostra todas as salas da clínica
-function mostrarTodasAsSalas(){
-    for (const sala of salas){
+function mostrarTodasAsSalas() {
+    for (const sala of salas) {
         mostrarSala(sala);
     }
 }
 
 //função que conta quantas luzes estão acesas na clínica (usado let em vez de const, pois o valor da variável contador vai mudar)
-function contarLuzesAcesas(){
+function contarLuzesAcesas() {
     let contador = 0;
-    for (const sala of salas){
-        if (sala.luzAcesa){
+    for (const sala of salas) {
+        if (sala.luzAcesa) {
             contador++;
         }
     }
     return contador;
-};
-
-    console.log(`Luzes acesas: ${contarLuzesAcesas()} de ${salas.length}`);
+}
 
 // Onde a Velada pode ir a partir da sala em que ela está?
 // Regra: ela só anda para salas VIZINHAS que estão com a luz apagada.
 function ondeVeladaPodeIr(salaAtual) {
-  const destinos = [];                          // lista vazia pra guardar os destinos
-  for (const nomeSaida of salaAtual.saidas) {   // percorre só as saídas DESTA sala
-    const vizinha = buscarSala(nomeSaida);      // transforma o nome na ficha da sala
-    if (!vizinha.luzAcesa) {                    // se a luz da vizinha NÃO está acesa...
-      destinos.push(vizinha);                   // ...ela pode ir pra lá
-    }else{
-        // se a luz da vizinha está acesa, não pode ir pra lá
-        destinos.push(`A Velada não pode ir para ${vizinha.nome} pois a luz está acesa!`);
+    const destinos = [];                          // lista vazia pra guardar os destinos
+    for (const nomeSaida of salaAtual.saidas) {   // percorre só as saídas DESTA sala
+        const vizinha = buscarSala(nomeSaida);      // transforma o nome na ficha da sala
+        if (!vizinha.luzAcesa) {                    // se a luz da vizinha NÃO está acesa...
+            destinos.push(vizinha);                   // ...ela pode ir pra lá
+        } else {
+            console.log(`A Velada não pode ir para ${vizinha.nome}: a luz está acesa!`);
+        }
     }
-  }
-  return destinos;
+    return destinos;
 }
 
 const destino = buscarSala("Sala de Laudos");
@@ -168,3 +165,6 @@ mostrarSala(salaComando);
 //acender a luz da sala de comando e mostrar as informações dela
 acenderLuz(salaComando);
 mostrarSala(salaComando);
+
+console.log(ondeVeladaPodeIr(arquivoMorto).length);   // tem que dar 2
+console.log(ondeVeladaPodeIr(recepcao).length);       // tem que dar 0
