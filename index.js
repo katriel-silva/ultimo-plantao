@@ -1,3 +1,7 @@
+// Importando o que cada módulo oferece
+import { salas, buscarSala, mostrarSala, apagarLuz, acenderLuz, contarLuzesAcesas } from "./mapa.js";
+import { velada, ondeVeladaPodeIr } from "./entidades.js";
+
 // Último Plantão hehe
 // fazer a inicialização do sistema da clínica
 
@@ -17,3 +21,22 @@ console.log(`Status do gerador: ${statusGerador}`);
 console.log(`Gasolina do gerador: ${gasolinaGerador}%`);
 console.log(`Técnico de plantão: ${nomeTecnico}`);
 console.log(`Horário do plantão: ${horarioPlantao}`);
+
+
+// ===== TESTES =====
+const salaComando = buscarSala("Sala de Comando");
+apagarLuz(salaComando);
+mostrarSala(salaComando);
+acenderLuz(salaComando);
+mostrarSala(salaComando);
+
+console.log(`Luzes acesas: ${contarLuzesAcesas()} de ${salas.length}`);
+console.log(ondeVeladaPodeIr(buscarSala("Arquivo Morto")).length);   // tem que dar 2
+console.log(ondeVeladaPodeIr(buscarSala("Recepção")).length);        // tem que dar 0
+console.log(`${velada.nome} está na ${velada.salaAtual.nome}`);
+
+
+const destino = buscarSala("Sala de Laudos");
+mostrarSala(destino);
+
+

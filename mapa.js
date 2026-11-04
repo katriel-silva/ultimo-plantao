@@ -1,5 +1,5 @@
-//Mapa da clinica
-//um Objeto é uma ficha: agrupa informações relacionadas em um único lugar
+export { salas, mostrarSala, apagarLuz, acenderLuz, buscarSala, mostrarTodasAsSalas, contarLuzesAcesas};
+
 const recepcao = {
     nome: "Recepção",                //nome da sala
     andar: "Térreo",                 //andar da sala
@@ -140,31 +140,3 @@ function contarLuzesAcesas() {
     }
     return contador;
 }
-
-// Onde a Velada pode ir a partir da sala em que ela está?
-// Regra: ela só anda para salas VIZINHAS que estão com a luz apagada.
-function ondeVeladaPodeIr(salaAtual) {
-    const destinos = [];                          // lista vazia pra guardar os destinos
-    for (const nomeSaida of salaAtual.saidas) {   // percorre só as saídas DESTA sala
-        const vizinha = buscarSala(nomeSaida);      // transforma o nome na ficha da sala
-        if (!vizinha.luzAcesa) {                    // se a luz da vizinha NÃO está acesa...
-            destinos.push(vizinha);                   // ...ela pode ir pra lá
-        } else {
-            console.log(`A Velada não pode ir para ${vizinha.nome}: a luz está acesa!`);
-        }
-    }
-    return destinos;
-}
-
-const destino = buscarSala("Sala de Laudos");
-mostrarSala(destino);
-
-//apagar a luz da sala de comando e mostrar as informações dela
-apagarLuz(salaComando);
-mostrarSala(salaComando);
-//acender a luz da sala de comando e mostrar as informações dela
-acenderLuz(salaComando);
-mostrarSala(salaComando);
-
-console.log(ondeVeladaPodeIr(arquivoMorto).length);   // tem que dar 2
-console.log(ondeVeladaPodeIr(recepcao).length);       // tem que dar 0
