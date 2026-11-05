@@ -26,6 +26,9 @@ console.log("---------------------------------");
 console.log("O plantão começou!...");
 
 for (let hora = 0 ; hora <8; hora++){
+    const relogio = (22 + hora) % 24; // para mostrar o horário correto (22, 23, 0, 1, 2, 3, 4, 5)
+    console.log(`${relogio}:00`);
+    
     console.log(`Hora ${hora+1}:`);
     // A cada hora, a gasolina do gerador diminui 10%
     gasolinaGerador -= 10;
@@ -33,7 +36,7 @@ for (let hora = 0 ; hora <8; hora++){
 
     if (hora === 4) {
         console.log("São 04:00 da manhã, e a tempestade está piorando... A luz do corredor da clínica se apagou!");
-        apagarLuz(buscarSala("Corredor Principal"));
+        apagarLuz(buscarSala("Corredor principal"));
     }
 
     moverVelada();
