@@ -1,6 +1,11 @@
 // Importando o que cada módulo oferece
 import { salas, buscarSala, mostrarSala, apagarLuz, acenderLuz, contarLuzesAcesas } from "./mapa.js";
 import { velada, ondeVeladaPodeIr } from "./entidades.js";
+import { velada, ondeVeladaPodeIr, moverVelada } from "./entidades.js";
+
+for (let i = 1; hora <=8; hora++){
+    // Simulando o passar do tempo no plantão
+}
 
 // Último Plantão hehe
 // fazer a inicialização do sistema da clínica
