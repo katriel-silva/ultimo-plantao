@@ -1,11 +1,6 @@
 // Importando o que cada módulo oferece
 import { salas, buscarSala, mostrarSala, apagarLuz, acenderLuz, contarLuzesAcesas } from "./mapa.js";
-import { velada, ondeVeladaPodeIr } from "./entidades.js";
 import { velada, ondeVeladaPodeIr, moverVelada } from "./entidades.js";
-
-for (let i = 1; hora <=8; hora++){
-    // Simulando o passar do tempo no plantão
-}
 
 // Último Plantão hehe
 // fazer a inicialização do sistema da clínica
@@ -27,8 +22,27 @@ console.log(`Gasolina do gerador: ${gasolinaGerador}%`);
 console.log(`Técnico de plantão: ${nomeTecnico}`);
 console.log(`Horário do plantão: ${horarioPlantao}`);
 
+console.log("---------------------------------");
+console.log("O plantão começou!...");
 
-// ===== TESTES =====
+for (let hora = 0 ; hora <8; hora++){
+    console.log(`Hora ${hora+1}:`);
+    // A cada hora, a gasolina do gerador diminui 10%
+    gasolinaGerador -= 10;
+    console.log(`Gasolina do gerador: ${gasolinaGerador}%`);
+
+    if (hora === 4) {
+        console.log("São 04:00 da manhã, e a tempestade está piorando... A luz do corredor da clínica se apagou!");
+        apagarLuz(buscarSala("Corredor Principal"));
+    }
+
+    moverVelada();
+}
+
+console.log(`Fim do plantão! O técnico ${nomeTecnico} vai embora...`);
+
+
+/* ===== TESTES =====
 const salaComando = buscarSala("Sala de Comando");
 apagarLuz(salaComando);
 mostrarSala(salaComando);
@@ -43,5 +57,4 @@ console.log(`${velada.nome} está na ${velada.salaAtual.nome}`);
 
 const destino = buscarSala("Sala de Laudos");
 mostrarSala(destino);
-
-
+*/

@@ -18,7 +18,7 @@ export function ondeVeladaPodeIr(salaAtual) {
         const vizinha = buscarSala(nomeSaida);      // transforma o nome na ficha da sala
         if (!vizinha.luzAcesa) {                    // se a luz da vizinha NÃO está acesa...
             destinos.push(vizinha);                   // ...ela pode ir pra lá
-        } 
+        }   
     }
     return destinos;
 }
@@ -29,11 +29,11 @@ export function moverVelada() {
     const destinos = ondeVeladaPodeIr(velada.salaAtual);
     
     if (destinos.length === 0){
-        console.log(`A velada está parada na ${velada.salaAtual.nome}.`);
+        console.log(`A velada está parada em: ${velada.salaAtual.nome}.`);
         return; // não há para onde ir
     }
 
     const proximaSala = sortearItem(destinos);
     velada.salaAtual = proximaSala;
-    console.log(`Passos descalços... A Velada se moveu para a ${proximaSala.nome}.`);
+    console.log(`Passos descalços... A Velada se moveu para: ${proximaSala.nome}.`);
 }
