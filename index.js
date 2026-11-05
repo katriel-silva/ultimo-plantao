@@ -56,5 +56,5 @@ console.log(`${velada.nome} está na ${velada.salaAtual.nome}`);
 
 
 const destino = buscarSala("Sala de Laudos");
-mostrarSala(destino);
+mostrarSala(destino);,
 */
